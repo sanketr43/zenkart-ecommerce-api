@@ -41,3 +41,5 @@ router.get("/get/:user_id", verifyTokenAndAuthorization, async (req, res) => {
       res.status(500).json(err);
     }
 });
+
+module.exports = router;
