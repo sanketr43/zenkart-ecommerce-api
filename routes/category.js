@@ -30,7 +30,7 @@ router.post('/create',verifyTokenAndAdmin, async (req,res) => {
 
 
 //update category
-router.post('/update/:id',verifyTokenAndAdmin, async (req,res) => {
+router.put('/update/:id',verifyTokenAndAdmin, async (req,res) => {
 
     try{
         await Category.findByIdAndUpdate(req.params.id,{
@@ -44,7 +44,7 @@ router.post('/update/:id',verifyTokenAndAdmin, async (req,res) => {
 
 
 //delete category
-router.post('/delete/:id',verifyTokenAndAdmin, async (req,res) => {
+router.delete('/delete/:id',verifyTokenAndAdmin, async (req,res) => {
 
     try{
         await Category.findByIdAndDelete(req.params.id),

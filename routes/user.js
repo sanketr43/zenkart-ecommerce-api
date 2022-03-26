@@ -19,6 +19,10 @@ router.put('/update/:id',verifyTokenAndAuthorization, async (req,res) => {
         req.body.password = CryptoJS.AES.encrypt(JSON.stringify(req.body.password),process.env.PASS_SEC).toString();
     }
 
+    if(req.body.isAdmin){
+        req.body.isAdmin = false;
+    }
+
     try{
         const updatedUser = await User.findByIdAndUpdate(req.params.id,{
             $set: req.body
