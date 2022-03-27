@@ -4,8 +4,37 @@ const router = require('express').Router();
 
 //get products
 router.get('/get', async (req,res) => {
+    const findBy = {};
+    
+    //category filter
+    if(req.query.id){
+        findBy['category_id'] = req.query.id.split(",");
+    }
+
+    //price filter
+    if(req.query.price){
+        findBy['price'] = { $lte: req.query.price };
+    }
+
+    //rating filter
+    if(req.query.rating){
+        findBy['rating'] = { $gte: req.query.rating };
+    }
+
+    //sort by
+    let sort_by = "";
+    if(req.query.sort_by){
+        if(req.query.sort_by == "LOW_TO_HIGH"){
+            sort_by = {price: 'asc'};
+        }else
+        if(req.query.sort_by == "HIGH_TO_LOW"){
+            sort_by = {price: 'desc'};
+        }
+    }
+
     try{
-        products = await Product.find();
+        let products;
+        products = await Product.find(findBy).sort(sort_by);
         res.status(200).json(products);
     }catch(err){
         res.status(401).json(err);
