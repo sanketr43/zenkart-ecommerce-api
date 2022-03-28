@@ -9,7 +9,11 @@ const productRouter = require('./routes/product');
 const cartRouter = require('./routes/cart');
 const wishlistRouter = require('./routes/wishlist');
 const orderRouter = require('./routes/order');
+const cors = require('cors');
 
+app.use(cors({
+    origin: ['http://localhost:3000','https://zenkart-app.netlify.app/']
+}));
 
 dotenv.config();
 
