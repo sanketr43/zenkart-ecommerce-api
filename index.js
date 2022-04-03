@@ -12,8 +12,7 @@ const orderRouter = require('./routes/order');
 const cors = require('cors');
 
 app.use(cors({
-    origin: ['http://localhost:3000','https://zenkart-app.netlify.app/','https://zenkart-app.netlify.app'],
-    methods: "GET, POST, PUT, DELETE"
+    origin: ['http://localhost:3000','http://localhost:3000/*','https://zenkart-app.netlify.app/*','https://zenkart-app.netlify.app']
 }));
 
 dotenv.config();
